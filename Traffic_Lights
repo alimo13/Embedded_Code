@@ -50,6 +50,7 @@ void manual_mode(){
       }
       if(curr_mode!=mode) return ;
       while(!Manual_C && curr_mode == mode)portc = 0b00100001;
+      if(curr_mode!=mode) return ;
       for(i=3;i>=0 ; i--){
       portd = nums[i];
       portc = 0b00001010;
