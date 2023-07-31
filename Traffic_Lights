@@ -7,7 +7,6 @@ void auto_mode();
 void interrupt(){
   if(Manual){
     Manual = 0 ;
-    portd = 0 ;
     mode = !mode;
   }
 }
@@ -24,20 +23,20 @@ void main() {
    }
 }
 void auto_mode(){
-   portd = 0; portc = 0;
+   portd = 0; portc = 0b1100000;
    curr_mode = mode;
        for(i=15; i>=0 ; i--){
           if (curr_mode!=mode) break;
           portd = nums[i] ;
-          if(i>12) portc = 0b00010001 ;
-          else  portc = 0b00100001 ;
+          if(i>12) portc = 0b11010001 ;
+          else  portc = 0b11100001 ;
           delay_ms(1000) ;
        }
        for(i=23;i>=0; i--){
           if(curr_mode!=mode) break;
           portd = nums[i];
-          if (i>20) portc = 0b00001010 ;
-          else portc = 0b00001100;
+          if (i>20) portc = 0b11001010 ;
+          else portc = 0b11001100;
           delay_ms(1000);
        }
    }
@@ -45,7 +44,7 @@ void manual_mode(){
       curr_mode = mode;
       for(i=3;i>=0;i--) {
       portd = nums[i];
-      portc = 0b00010001;
+      portc = 0b01010001;
       if(i)delay_ms(1000);
       }
       if(curr_mode!=mode) return ;
@@ -53,7 +52,7 @@ void manual_mode(){
       if(curr_mode!=mode) return ;
       for(i=3;i>=0 ; i--){
       portd = nums[i];
-      portc = 0b00001010;
+      portc = 0b10001010;
       if(i) delay_ms(1000);
       }
       if (curr_mode!=mode) return;
