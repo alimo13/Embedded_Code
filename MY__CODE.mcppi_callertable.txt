@@ -1,6 +1,0 @@
-main
-	__CC2DW
-		____DoICP
-	auto_mode
-	manual_mode
-interrupt
